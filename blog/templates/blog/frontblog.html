@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>HOREN PORTFOLIO</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <!-- Favicons -->
+  <link href="{% static 'img/favicon.ico ' %}" rel="icon">
+  <link href="{% static 'img/apple-touch-icon.png ' %}" rel="apple-touch-icon">
+
+  <!-- Bootstrap CSS File -->
+  <link href="{% static 'lib/bootstrap/css/bootstrap.min.css ' %}" rel="stylesheet">
+
+  <!-- Libraries CSS Files -->
+  <link href="{% static 'lib/font-awesome/css/font-awesome.min.css ' %}" rel="stylesheet">
+  <link href="{% static 'lib/animate/animate.min.css ' %}" rel="stylesheet">
+  <link href="{% static 'lib/ionicons/css/ionicons.min.css ' %}" rel="stylesheet">
+  <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css ' %}" rel="stylesheet">
+  <link href="{% static 'lib/lightbox/css/lightbox.min.css ' %}" rel="stylesheet">
+
+  <!-- Main Stylesheet File -->
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+  <!-- =======================================================
+    Theme Name: DevFolio
+    Theme URL: https://bootstrapmade.com/devfolio-bootstrap-portfolio-html-template/
+    Author: BootstrapMade.com
+    License: https://bootstrapmade.com/license/
+  ======================================================= -->
+</head>
+
+<body>
+  <!--/ Nav Star /-->
+  <nav class="navbar navbar-b navbar-trans navbar-expand-md fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll" href="#page-top">HOREN TECH</a>
+      <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault"
+        aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="navbar-collapse collapse justify-content-end" id="navbarDefault">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link js-scroll active" href="{%url 'index'%}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll" href="{%url 'about'%}">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll" href="{%url 'frontblog'%}">Blog</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll" href="{%url 'subscribe'%}">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!--/ Nav End /-->
+
+  <!--/ Intro Skew Star /-->
+  <div class="intro intro-single route bg-image">
+    <div class="overlay-mf"></div>
+    <div class="intro-content display-table">
+      <div class="table-cell">
+        <div class="container">
+          <h2 class="intro-title mb-4">Blogs</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--/ Intro Skew End /-->
+
+  <section class="blog-wrapper sect-pt4" id="blog">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="row">
+            {% for x in data.all %}
+            <div class="col-md-6">
+              <div class="card card-blog">
+                <div class="card-img">
+                  <a href="{% url 'detail' x.id %}">
+                  <img class = "card-img-top" src="{{x.blog_image.url }}"></img></a>
+                </div>
+                <div class="card-body">
+                  <div class="card-category-box">
+                    <div class="card-category">
+                      <h6 class="category">{{x.blog_title}}</h6>
+                    </div>
+                  </div>
+                  <h3 class="card-title"><a href="{%url 'detail' x.id%}">{{x.blog_heading}}</a></h3>
+                  <p class="card-description">
+                    {{x.blog_notes}}
+                  </p>
+                </div>
+              </div>
+               
+            </div>
+            {%endfor%}
+          </div>
+          
+        
+        </div>
+        <div class="col-md-4">
+
+          <div class="widget-sidebar">
+             
+            <h5 class="sidebar-title">Recent Posts</h5>
+
+            
+            <div class="sidebar-content">
+              <ul class="list-sidebar">
+                {% for recent in data.all%}
+                
+                
+                <li><a href="{% url 'detail' recent.id %}"> {{recent.blog_heading}} </a> </li>
+                {% endfor %}
+              </ul>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  <section class="paralax-mf footer-paralax bg-image sect-mt4 route">
+    <div class="overlay-mf"></div>  
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="copyright-box">
+              <p class="copyright">&copy; Copyright {{current_year}}</p>
+              <div class="credits">
+      
+                Designed By |  <a href="#"><strong>HOREN TECHNOLOGIES</strong></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </section>
+
+  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+  <div id="preloader"></div>
+  <!--/ whatsapp /-->
+  <a href="https://api.whatsapp.com/send/?phone=+2348120484554&text=I%27m+interested+in+your+work" 
+  class="whatsapp"><i class="fa fa-whatsapp"></i></a>
+  <!-- JavaScript Libraries -->
+  <script src="{% static 'lib/jquery/jquery.min.js'%}"></script>
+  <script src="{% static 'lib/jquery/jquery-migrate.min.js'%}"></script>
+  <script src="{% static 'lib/popper/popper.min.js'%}"></script>
+  <script src="{% static 'lib/bootstrap/js/bootstrap.min.js'%}"></script>
+  <script src="{% static 'lib/easing/easing.min.js'%}"></script>
+  <script src="{% static 'lib/counterup/jquery.waypoints.min.js'%}"></script>
+  <script src="{% static 'lib/counterup/jquery.counterup.js'%}"></script>
+  <script src="{% static 'lib/owlcarousel/owl.carousel.min.js'%}"></script>
+  <script src="{% static 'lib/lightbox/js/lightbox.min.js'%}"></script>
+  <script src="{% static 'lib/typed/typed.min.js'%}"></script>
+  <!-- Contact Form JavaScript File -->
+  <script src="{% static 'contactform/contactform.js'%}"></script>
+
+  <!-- Template Main Javascript File -->
+  <script src="{% static 'js/main.js'%}"></script>
+
+</body>
+</html>
